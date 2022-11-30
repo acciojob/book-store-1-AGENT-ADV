@@ -45,13 +45,13 @@ public class BookController {
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         book.setId(id);
-        id++;
+        this.id++;
         listOfBooks.add(book);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> findBookByid(@PathVariable("id") int id)
+    public ResponseEntity<Book> getBookById(@PathVariable("id") int id)
     {
         Book ret = null;
         for(Book b : listOfBooks)
@@ -63,13 +63,13 @@ public class BookController {
 
 
     @GetMapping("/get-all-books")
-    public ResponseEntity<List<Book>> findAllBooks()
+    public ResponseEntity<List<Book>> getAllBooks()
     {
         return new ResponseEntity<>(listOfBooks,HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/get-books-by-author")
-    public ResponseEntity<List<Book>> findBooksByAuthor(@RequestParam("author") String author)
+    public ResponseEntity<List<Book>> getBooksByAuthor(@RequestParam("author") String author)
     {
         List<Book> ret = new ArrayList<>();
         for(Book b : listOfBooks)
@@ -81,7 +81,7 @@ public class BookController {
     }
 
     @GetMapping("/get-books-by-genre")
-    public ResponseEntity<List<Book>> findBooksByGenre(@RequestParam("genre") String genre)
+    public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam("genre") String genre)
     {
         List<Book> ret = new ArrayList<>();
         for(Book b : listOfBooks)
